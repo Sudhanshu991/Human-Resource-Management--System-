@@ -6,6 +6,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
 from datetime import date
 
+import os
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 8000))
+    )
+
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="HRMS Lite API")
@@ -155,3 +165,4 @@ def dashboard_summary(db: Session = Depends(get_db)):
         "absent_today": absent_today,
         "date": today
     }
+
