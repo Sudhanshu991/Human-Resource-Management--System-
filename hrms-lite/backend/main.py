@@ -166,3 +166,6 @@ def dashboard_summary(db: Session = Depends(get_db)):
         "date": today
     }
 
+@app.get("/")
+def root():
+    return {"message": "HRMS Lite Backend is running"}
