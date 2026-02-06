@@ -26,6 +26,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+@app.get("/")
+def root():
+    return {
+        "message": "HRMS Lite Backend is running",
+        "docs": "/docs"
+    }
 
 
 def get_db():
@@ -166,6 +172,3 @@ def dashboard_summary(db: Session = Depends(get_db)):
         "date": today
     }
 
-@app.get("/")
-def root():
-    return {"message": "HRMS Lite Backend is running"}
